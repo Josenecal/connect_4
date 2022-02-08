@@ -1,9 +1,6 @@
+require 'pry'
 class Board
-  #toggling on attr_accessor for testing purposes only!
-  #comment out before final shipment
-
-  # attr_reader: @spaces
-  attr_accessor: @spaces
+  attr_accessor :spaces
 
   def initialize ()
     #Represents 7 columns, each with 6 rows.
@@ -24,11 +21,11 @@ class Board
     end
   end
 
-  def place_piece (column, mark) #expects column letter, x or o
+  def place_piece(column, mark) #expects column letter, x or o
     counter = 5
     while counter >= 0 do
-      if @spaces[column[counter]]== "."
-        @spaces[column[counter]] = mark
+      if @spaces[column][counter]== "."
+        @spaces[column][counter] = mark
         return true
       end
       counter -= 1
