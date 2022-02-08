@@ -24,6 +24,17 @@ class Board
     end
   end
 
+  def place_piece (column, mark) #expects column letter, x or o
+    counter = 5
+    while counter >= 0 do
+      if @spaces[column[counter]]== "."
+        @spaces[column[counter]] = mark
+        return true
+      end
+      counter -= 1
+    end
+    return false
+  end
 end
 
 test = Board.new
