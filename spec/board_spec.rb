@@ -49,5 +49,16 @@ RSpec.describe 'Class exists' do
     expect(valid_column?).to eq(false)
   end
 
+  context 'vertical_checker' do
+    it "detects 4 in a row vertically" do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", "x", "x", "x", "x"],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
+      expect(test_board.vertical_checker).to eq (true)
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["x", "x", "x", "x", "o", "o"],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
+      expect(test_board.vertical_checker).to eq (true)
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
+      expect(test_board.vertical_checker).to eq(false)
+    end
+  end
 
 end
