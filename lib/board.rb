@@ -2,12 +2,14 @@ require 'pry'
 class Board
   attr_accessor :spaces
 
+
   def initialize ()
     #Represents 7 columns, each with 6 rows.
-    #@space[0] to represent column A, @spaces [0[0]] the top-left-most space.
+    #@space[0] to represent column A, @spaces [0][0] the top-left-most space.
     #We'll fill this with x's to represent humnan moves, o's to represent the computer.
     @spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
   end
+
 
   def print_board
     puts "ABCDEFG"
@@ -34,5 +36,46 @@ class Board
   end
 end
 
-test = Board.new
-test.print_board
+
+def valid_column?
+  @valid_choices = ["A","B","C","D","E","F","G","a","b","c","d","e","f","g"]
+  if @letter == "A" && @test.spaces[0][0] == "." || @letter == "a" && @test.spaces[0][0] == "."
+    return true
+  else
+    return false
+  end
+
+  if @letter == "B" && @test.spaces[1][0] == "."  || @letter == "b" && @test.spaces[1][0] == "."
+    return true
+  else
+    return false
+  end
+
+  if @letter == "C" && @test.spaces[2][0] == "." || @letter == "c" && @test.spaces[2][0] == "."
+    return true
+  else
+    return false
+  end
+
+  if @letter == "D" && @test.spaces[3][0] == "." || @letter == "d" && @test.spaces[3][0] == "."
+    return true
+  else
+    return false
+  end
+
+  if @letter == "E" && @test.spaces[4][0] == "." || @letter == "e" && @test.spaces[4][0] == "."
+    return true
+  else
+    return false
+  end
+
+  if @letter == "F" && @test.spaces[5][0] == "." || @letter == "f" && @test.spaces[5][0] == "."
+    return true
+  else
+    return false
+  end
+
+  if @valid_choices.include?(@letter) == false
+    return false
+  end
+end

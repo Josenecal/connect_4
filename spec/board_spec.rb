@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/board.rb'
 
+
 RSpec.describe 'Class exists' do
   it 'creates a new instance of Board object' do
     test_var = Board.new()
@@ -24,4 +25,29 @@ RSpec.describe 'Class exists' do
     expect(test_board.spaces).to eq([[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], ["x", "x", "o", "x", "o", "x"]])
     end
   end
+
+  it 'is A valid on an empty board' do
+
+    @letter = "A"
+    Board.new
+    @test_board = Board.new
+    expect(valid_column?).to eq(true)
+  end
+
+  it 'is A valid on a full column' do
+
+    @letter = "a"
+    @test_board = Board.new
+    @test_board.spaces.replace [["X", "O", "X", "O", "X", "O"],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
+    expect(valid_column?).to eq(false)
+  end
+
+  it 'is X a valid choice' do
+
+    @letter = "x"
+    @test_board = Board.new
+    expect(valid_column?).to eq(false)
+  end
+
+
 end
