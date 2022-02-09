@@ -78,4 +78,16 @@ def valid_column?
     return false
   end
 end
+
+   def vertical_checker
+    @spaces.each do |column|#iterates through all 7 columns
+      3.times do |count|
+        binding.pry
+        if ((column[count-1] != "." && column[count-1] == column[count]) && column[count-1] == column[count+1])&& column[count-1] == column[count+2]
+          return true
+        end
+      end
+    end
+    return false
+  end
 end
