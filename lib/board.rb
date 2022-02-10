@@ -101,10 +101,59 @@ class Board
       # binding.pry
       output << accumulator
     end
+    # binding.pry
     return output
   end
 
   def horizontal_checker
-
+    to_check = column_to_row_translation
+    to_check.each do |row|#iterates through all 6 rows
+      4.times do |column| #checks for 4 in a row from 4 starting positions to cover entire row
+        # binding.pry
+        if ((row[column] != "." && row[column] == row[column+1]) && row[column] == row[column+2])&& row[column] == row[column+3]
+          return true
+        end
+      end
+    end
+    return false
   end
+
+  def diagonal_translator_1 #yeah this is messy, but I can't see a better way... and it works!
+    output = []
+    row = 3
+    column = 0
+    3.times do |count|
+      row_counter = row + count
+      column_counter = column
+      accumulator = []
+      loop do #each loop builds one of the first 3 diagonal arrays
+        accumulator << @spaces[column_counter][row_counter]
+        if row_counter == 0
+          break
+        end
+        row_counter -= 1
+        column_counter += 1
+      end
+      output << accumulator
+    end
+    row = 5
+    column = 1
+    3.times do |count|
+      row_counter = row
+      column_counter = column + count
+      accumulator = []
+      loop do
+        accumulator << @spaces[column_counter][row_counter]
+        if column_counter == 6
+          break
+        end
+        row_counter -= 1
+        column_counter += 1
+      end
+      output << accumulator
+    end
+    return output
+  end
+
+
 end
