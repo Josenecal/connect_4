@@ -101,12 +101,13 @@ RSpec.describe 'Class exists' do
   end
 
   context 'diagonal_checker' do
-    test_board = Board.new
-    test_board.spaces = [[".", ".", ".", ".", "x", "x"],[".", ".", ".", ".", "o", "o"],[".", ".", "x", "o", "o", "x"],[".", ".", ".", "x", "o", "o"],[".", ".", ".", ".", "x", "o"],[".", ".", ".", ".", ".", "x"], [".", ".", ".", ".", ".", "."]]
-    expect(test_board.diagonal_checker).to eq(true)
-    test_board.spaces = [[".", ".", ".", ".", "x", "x"],[".", ".", ".", ".", "o", "o"],[".", ".", "x", "o", "o", "x"],[".", ".", ".", "x", "o", "o"],[".", ".", ".", ".", "o", "o"],[".", ".", ".", ".", ".", "x"], [".", ".", ".", ".", ".", "."]]
-    expect(test_board.diagonal_checker).to eq(false)
-    
+    it "detects 4 in a row diagonally" do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", "x", "x"],[".", ".", ".", ".", "o", "o"],[".", ".", "x", "o", "o", "x"],[".", ".", ".", "x", "o", "o"],[".", ".", ".", ".", "x", "o"],[".", ".", ".", ".", ".", "x"], [".", ".", ".", ".", ".", "."]]
+      expect(test_board.diagonal_checker).to eq(true)
+      test_board.spaces = [[".", ".", ".", ".", "x", "x"],[".", ".", ".", ".", "o", "o"],[".", ".", "x", "o", "o", "x"],[".", ".", ".", "x", "o", "o"],[".", ".", ".", ".", "o", "o"],[".", ".", ".", ".", ".", "x"], [".", ".", ".", ".", ".", "."]]
+      expect(test_board.diagonal_checker).to eq(false)
+    end
   end
 
 end
