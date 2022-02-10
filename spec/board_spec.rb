@@ -26,7 +26,7 @@ RSpec.describe 'Class exists' do
     end
   end
 
-  it 'is A valid on an empty board' do
+  xit 'is A valid on an empty board' do
 
     letter = "A"
     Board.new
@@ -34,7 +34,7 @@ RSpec.describe 'Class exists' do
     expect(valid_column?).to eq(true)
   end
 
-  it 'is A valid on a full column' do
+  xit 'is A valid on a full column' do
 
     letter = "a"
     test_board = Board.new
@@ -42,7 +42,7 @@ RSpec.describe 'Class exists' do
     expect(valid_column?).to eq(false)
   end
 
-  it 'is X a valid choice' do
+  xit 'is X a valid choice' do
 
     letter = "x"
     test_board = Board.new
@@ -62,7 +62,7 @@ RSpec.describe 'Class exists' do
   end
 
   context 'horizontal_checker' do
-    it "detects 4 in a row horizontally" do
+    xit "detects 4 in a row horizontally" do
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", "x", ".", ".", "."],[".", ".", "x", ".", ".", "."],[".", ".", "x", ".", ".", "."],[".", ".", "x", "x", "x", "x"],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
       expect(test_board.vertical_checker).to eq (true)
@@ -70,6 +70,17 @@ RSpec.describe 'Class exists' do
       expect(test_board.vertical_checker).to eq (true)
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
       expect(test_board.vertical_checker).to eq(false)
+    end
+  end
+
+  context 'column_to_row translation' do
+    it 'translates from 7 arrays of 6 dots to 6 arrays of 7 dots' do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
+      expect(test_board.column_to_row_translation).to eq([[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."]])
+
+      test_board.spaces = [["x", ".", ".", ".", ".", "."],["x", ".", ".", ".", ".", "."],["x", ".", ".", ".", ".", "."],["x", ".", ".", ".", ".", "."],["x", ".", ".", ".", ".", "."],["x", ".", ".", ".", ".", "."], ["x", ".", ".", ".", ".", "."]]
+      expect(test_board.column_to_row_translation).to eq([["x", "x", "x", "x", "x", "x", "x",],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", ".", "."]])
     end
   end
 end
