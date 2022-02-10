@@ -118,7 +118,7 @@ class Board
     return false
   end
 
-  def diagonal_translator_1 #yeah this is messy, but I can't see a better way... and it works!
+  def diagonal_translator_1 #It's messy but IT WORKS!!! translates diagonally like ///
     output = []
     row = 3
     column = 0
@@ -155,5 +155,41 @@ class Board
     return output
   end
 
-
+  def diagonal_translator_2 #translates diagonally like \\\
+    output = []
+    row = 3
+    column = 6
+    3.times do |count|
+      row_counter = row + count
+      column_counter = column
+      accumulator = []
+      loop do #each loop builds one of the first 3 diagonal arrays
+        accumulator << @spaces[column_counter][row_counter]
+        if row_counter == 0
+          break
+        end
+        row_counter -= 1
+        column_counter -= 1
+      end
+      output << accumulator
+    end
+    row = 5
+    column = 5
+    3.times do |count|
+      row_counter = row
+      column_counter = column - count
+      accumulator = []
+      loop do
+        # binding.pry
+        accumulator << @spaces[column_counter][row_counter]
+        if column_counter == 0
+          break
+        end
+        row_counter -= 1
+        column_counter -= 1
+      end
+      output << accumulator
+    end
+    return output
+  end
 end
