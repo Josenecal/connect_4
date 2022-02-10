@@ -1,5 +1,4 @@
 require 'pry'
-<<<<<<< HEAD
 require "lib/board.rb"
 
 class Turn
@@ -39,13 +38,3 @@ class Turn
 end
 test = Turn.new
 test.valid_column?
-=======
-require '.lib/board.rb'
-
-class Turn
-
-def place_piece
-
-end
-end
->>>>>>> e92fccaa7e27fd3ae69f1655a8b715c8410db1e6
