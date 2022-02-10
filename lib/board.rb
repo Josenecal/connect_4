@@ -36,58 +36,75 @@ class Board
   end
 
 
-def valid_column?
-  @valid_choices = ["A","B","C","D","E","F","G","a","b","c","d","e","f","g"]
-  if letter == "A" && test_board.spaces[0][0] == "." || letter == "a" && @test.spaces[0][0] == "."
-    return true
-  else
-    return false
+  def valid_column?
+    @valid_choices = ["A","B","C","D","E","F","G","a","b","c","d","e","f","g"]
+    if letter == "A" && test_board.spaces[0][0] == "." || letter == "a" && @test.spaces[0][0] == "."
+      return true
+    else
+      return false
+    end
+
+    if letter == "B" && test_board.spaces[1][0] == "."  || letter == "b" && test_board.spaces[1][0] == "."
+      return true
+    else
+      return false
+    end
+
+    if letter == "C" && test_board.spaces[2][0] == "." || letter == "c" && test_board.spaces[2][0] == "."
+      return true
+    else
+      return false
+    end
+
+    if letter == "D" && test_board.spaces[3][0] == "." || letter == "d" && test_board.spaces[3][0] == "."
+      return true
+    else
+      return false
+    end
+
+    if letter == "E" && test_board.spaces[4][0] == "." || letter == "e" && test_board.spaces[4][0] == "."
+      return true
+    else
+      return false
+    end
+
+    if letter == "F" && test_board.spaces[5][0] == "." || letter == "f" && test_board.spaces[5][0] == "."
+      return true
+    else
+      return false
+    end
+
+    if @valid_choices.include?(letter) == false
+      return false
+    end
   end
 
-  if letter == "B" && test_board.spaces[1][0] == "."  || letter == "b" && test_board.spaces[1][0] == "."
-    return true
-  else
-    return false
-  end
-
-  if letter == "C" && test_board.spaces[2][0] == "." || letter == "c" && test_board.spaces[2][0] == "."
-    return true
-  else
-    return false
-  end
-
-  if letter == "D" && test_board.spaces[3][0] == "." || letter == "d" && test_board.spaces[3][0] == "."
-    return true
-  else
-    return false
-  end
-
-  if letter == "E" && test_board.spaces[4][0] == "." || letter == "e" && test_board.spaces[4][0] == "."
-    return true
-  else
-    return false
-  end
-
-  if letter == "F" && test_board.spaces[5][0] == "." || letter == "f" && test_board.spaces[5][0] == "."
-    return true
-  else
-    return false
-  end
-
-  if @valid_choices.include?(letter) == false
-    return false
-  end
-end
-
-   def vertical_checker
+  def vertical_checker
     @spaces.each do |column|#iterates through all 7 columns
       3.times do |count|
-        binding.pry
-        if ((column[count-1] != "." && column[count-1] == column[count]) && column[count-1] == column[count+1])&& column[count-1] == column[count+2]
+        # binding.pry
+        if ((column[count] != "." && column[count] == column[count+1]) && column[count] == column[count+2])&& column[count] == column[count+3]
           return true
         end
       end
     end
     return false
+  end
+
+  def column_to_row_translation
+    output = []
+    6.times do |row|
+      accumulator = []
+      @spaces.each do |column|
+        accumulator << column[row]
+      end
+      # binding.pry
+      output << accumulator
+    end
+    return output
+  end
+
+  def horizontal_checker
+
   end
 end
