@@ -93,10 +93,10 @@ RSpec.describe 'Class exists' do
   end
 
   context 'diagonal translator 2 \\\ ' do
-    xit 'converts all 45˚ diagonals longer than 4 spaces to arrays' do
+    it 'converts all 45˚ diagonals longer than 4 spaces to arrays' do
       test_board = Board.new
       test_board.spaces = [["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"],["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"],["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"], ["x", "o", "x", "o", "x", "o"]]
-      expect(test_board.diagonal_translator_2).to eq([["x", "x", "x", "x"], ["o", "o", "o", "o", "o"], ["x", "x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o", "o"], ["x", "x", "x", "x", "x"], ["o", "o", "o", "o"]])
+      expect(test_board.diagonal_translator_2).to eq([["o", "o", "o", "o"], ["x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o", "o"], ["x", "x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o"], ["x", "x", "x", "x"]])
     end
   end
 
