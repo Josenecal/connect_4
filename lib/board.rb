@@ -79,6 +79,10 @@ class Board
     end
   end
 
+  #vertical_checker, horizontal_checker and diagonal_checker look through the board on 3 axises for 4 in a row. if found, will return true, else will return false.
+  #they accept no arguments, and will check the @spaces instance variable in its current state.
+
+
   def vertical_checker
     @spaces.each do |column|#iterates through all 7 columns
       3.times do |count|
@@ -191,5 +195,29 @@ class Board
       output << accumulator
     end
     return output
+  end
+
+  def diagonal_checker
+    to_check = [diagonal_translator_1, diagonal_translator_2]
+    to_check.each do |board|
+
+      board.each do |diagonal_array|
+        accumulator = 1
+        accessor = 1
+        diagonal_array.each do |element|
+
+          if element == diagonal_array[accessor] && element != "."
+            accumulator += 1
+            if accumulator == 4
+              return true
+            end
+          else
+            accumulator = 1
+          end
+          accessor += 1
+        end
+      end
+    end
+    return false
   end
 end
