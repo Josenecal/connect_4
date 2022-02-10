@@ -1,6 +1,6 @@
 class Input
 
-  attr_reader :letter
+  attr_accessor :letter
 
   def initialize(letter)
     @letter = letter
