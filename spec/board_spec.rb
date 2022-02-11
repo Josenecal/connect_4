@@ -30,10 +30,22 @@ RSpec.describe 'Class exists' do
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
       choice = Input.new("A")
-      expect(test_board.valid_column?).to eq true
+      expect(test_board.valid_column?(choice)).to eq true
     end
 
+    it 'accepts input A on an empty board' do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
+      choice = Input.new("A")
+      expect(test_board.valid_column?(choice)).to eq true
+    end
 
+    it 'refuses input D on an empty board' do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["x", "x", "x", "x", "x", "x"],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
+      choice = Input.new("d")
+      expect(test_board.valid_column?(choice)).to eq false
+    end
 
 
 

@@ -1,7 +1,7 @@
 require 'pry'
 require './lib/input.rb'
 class Board
-  attr_accessor :spaces, :letter
+  attr_accessor :spaces
 
   def initialize ()
     #Represents 7 columns, each with 6 rows.
@@ -28,19 +28,19 @@ class Board
     while counter >= 0 do
       if @spaces[column][counter]== "."
         @spaces[column][counter] = mark
-        return true
+        true
       end
       counter -= 1
     end
-    return false
+      false
   end
 
 
-  def valid_column?
-    if @spaces[choice.letter.translator][0] = "."
-      return true
+  def valid_column?(choice)
+    if @spaces[choice.translator][0] == "."
+      true
     else
-      return false
+      false
     end
   end
 end
