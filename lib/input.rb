@@ -3,35 +3,35 @@ class Input
   attr_accessor :letter
 
   def initialize(letter)
-    @letter = letter
+    @letter = letter.upcase
   end
 
   def translator
-    if letter == "A" || letter == "a"
+    if letter == "A"
       return 0
     end
 
-    if letter == "B" || letter == "b"
+    if letter == "B"
       return 1
     end
 
-    if letter == "C" || letter == "c"
+    if letter == "C"
       return 2
     end
 
-    if letter == "D" || letter == "d"
+    if letter == "D"
       return 3
     end
 
-    if letter == "E" || letter == "e"
+    if letter == "E"
       return 4
     end
 
-    if letter == "F" || letter == "f"
+    if letter == "F"
       return 5
     end
 
-    if letter == "G" || letter == "g"
+    if letter == "G" 
       return 6
     end
   end
