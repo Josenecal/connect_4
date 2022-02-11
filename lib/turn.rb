@@ -4,7 +4,10 @@ require "lib/board.rb"
 class Turn
   attr_reader :letter
   def initialize()
+  end
 
+  def is_winning_turn? (board)
+    (board.vertical_checker || board.horizontal_checker) || board.diagonal_checker
   end
 
   def valid_column?
