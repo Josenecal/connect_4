@@ -40,6 +40,7 @@ RSpec.describe 'Class exists' do
       expect(test_board.valid_column?(choice)).to eq true
     end
 
+
     it 'refuses input D on an empty board' do
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["x", "x", "x", "x", "x", "x"],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
@@ -47,7 +48,49 @@ RSpec.describe 'Class exists' do
       expect(test_board.valid_column?(choice)).to eq false
     end
 
+  context 'horizontal_checker' do
+    it "detects 4 in a row horizontally" do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", "x", ".", ".", "."],[".", ".", "x", ".", ".", "."],[".", ".", ".", "x", ".", "."],[".", ".", ".", "x", "x", "x"],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
+      expect(test_board.horizontal_checker).to eq (true)
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", "o", "x"],[".", ".", ".", ".", "o", "x"],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "o"]]
+      expect(test_board.horizontal_checker).to eq (true)
+      test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
+      expect(test_board.horizontal_checker).to eq(false)
+    end
+  end
+
+
+
+
 
 
   end
+
+  context "diagonal translator 1 /// " do
+    it "converts all 45˚ diagonals longer than 4 spaces to arrays" do
+      test_board = Board.new
+      test_board.spaces = [["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"],["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"],["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"], ["x", "o", "x", "o", "x", "o"]]
+      expect(test_board.diagonal_translator_1).to eq([["o", "o", "o", "o"], ["x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o", "o"], ["x", "x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o"], ["x", "x", "x", "x"]])
+    end
+  end
+
+  context 'diagonal translator 2 \\\ ' do
+    it 'converts all 45˚ diagonals longer than 4 spaces to arrays' do
+      test_board = Board.new
+      test_board.spaces = [["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"],["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"],["x", "o", "x", "o", "x", "o"],["o", "x", "o", "x", "o", "x"], ["x", "o", "x", "o", "x", "o"]]
+      expect(test_board.diagonal_translator_2).to eq([["o", "o", "o", "o"], ["x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o", "o"], ["x", "x", "x", "x", "x", "x"], ["o", "o", "o", "o", "o"], ["x", "x", "x", "x"]])
+    end
+  end
+
+  context 'diagonal_checker' do
+    it "detects 4 in a row diagonally" do
+      test_board = Board.new
+      test_board.spaces = [[".", ".", ".", ".", "x", "x"],[".", ".", ".", ".", "o", "o"],[".", ".", "x", "o", "o", "x"],[".", ".", ".", "x", "o", "o"],[".", ".", ".", ".", "x", "o"],[".", ".", ".", ".", ".", "x"], [".", ".", ".", ".", ".", "."]]
+      expect(test_board.diagonal_checker).to eq(true)
+      test_board.spaces = [[".", ".", ".", ".", "x", "x"],[".", ".", ".", ".", "o", "o"],[".", ".", "x", "o", "o", "x"],[".", ".", ".", "x", "o", "o"],[".", ".", ".", ".", "o", "o"],[".", ".", ".", ".", ".", "x"], [".", ".", ".", ".", ".", "."]]
+      expect(test_board.diagonal_checker).to eq(false)
+    end
+  end
+
 end
