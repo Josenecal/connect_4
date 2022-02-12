@@ -1,27 +1,22 @@
 require 'pry'
 require 'rspec'
-require 'lib/board.rb'
-require 'lib/turn.rb'
+require './lib/board.rb'
+require './lib/turn.rb'
 
 RSpec.describe 'place_piece' do
-  it 'Accepts a single argument representing a column, and adds a piece to the first availabel space of the given column' do
-#{setup}, execution, test
-    test_board = board.new
-    test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
-    test_turn = Turn.new
-    test_turn.place_piece("A")
 
-    expect(test_board.spaces).to eq([[".", ".", ".", ".", ".", "x"],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]])
+  it 'is_tie return true if board is full' do
+    test_board = Board.new
+    test_board.spaces = [["x", "x", "o", "x", "o", "o"],["o", "o", "x", "o", "x", "x"],["x", "x", "o", "x", "o", "o"],["o", "x", "o", "x", "o", "x"],["x", "x", "o", "x", "o", "o"],["o", "o", "x", "o", "x", "x"], ["x", "x", "o", "x", "o", "o"]]
+    test_turn = Turn.new
+    expect(test_turn.is_tie?(test_board)).to eq(true)
+  end
+  #Though about adding functionality to prevent a player from adding a piece to a column that is already full, but this isn't really a job for the place_piece method, this is for the column_full? method. They can interact in the runner.
+
+  it 'is_tie false if board is empty' do
+    test_board = Board.new
+    test_turn = Turn.new
+    expect(test_turn.is_tie?(test_board)).to eq(false)
   end
 
-  it 'adds to the first available space if columns already contain pieces' do
-    test_board = board.new
-    test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
-    test_turn = Turn.new
-    test_turn.place_piece("G")
-
-  expect(test_board.spaces).to eq([[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], ["x", "x", "o", "x", "o", "x"]])
-  end
-
-  #Though about adding functionality to prevent a player from adding a piece to a column that is already full, but this isn't really a job for the place_piece method, this is for the column_full? method. They can interact in the runner. 
 end

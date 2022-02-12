@@ -9,7 +9,7 @@ RSpec.describe 'Class exists' do
     expect(test_var).to be_an_instance_of(Board)
   end
   describe 'place_piece' do
-    it 'Accepts a single argument representing a column, and adds a piece to the first availabel space of the given column' do
+    it 'Accepts a single argument representing a column, and adds a piece to the first available space of the given column' do
   #{setup}, execution, test
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], [".", "x", "o", "x", "o", "x"]]
