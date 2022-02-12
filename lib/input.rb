@@ -6,6 +6,11 @@ class Input
     @letter = letter
   end
 
+  def gets_letter(player_letter)
+    player_letter = gets.chomp
+  end
+
+
   def translator
     range = [0,1,2,3,4,5,6]
     if letter == "A" || letter == "a"
