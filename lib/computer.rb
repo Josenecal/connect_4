@@ -9,7 +9,7 @@ class Computer
 
   end
 
-  def computer_choice(test_board)
+  def computer_choice(board)
     zero  = Input.new(0)
     one   = Input.new(1)
     two   = Input.new(2)
@@ -20,7 +20,7 @@ class Computer
     computer_choices = [zero,one,two,three,four,five,six]
     random_choices = computer_choices.shuffle
     random_choices.find do |number|
-      if test_board.valid_column?(number) == true
+      if board.valid_column?(number) == true
         return number.letter
       end
     end
