@@ -18,4 +18,10 @@ RSpec.describe 'Class exists' do
     letter = Input.new("D")
     expect(letter.translator).to eq(3)
   end
+
+  it "4 returns 4" do
+    letter = Input.new(4)
+    expect(letter.translator).to eq(4)
+  end
+
 end

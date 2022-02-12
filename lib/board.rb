@@ -1,7 +1,7 @@
 require 'pry'
 require './lib/input.rb'
 class Board
-  attr_accessor :spaces
+  attr_accessor :spaces, :letter
 
   def initialize ()
     #Represents 7 columns, each with 6 rows.
@@ -37,22 +37,14 @@ class Board
 
 
   def valid_column?(choice)
+  
     if @spaces[choice.translator][0] == "."
       true
     else
       false
     end
-
-    if letter == "F" && test_board.spaces[5][0] == "." || letter == "f" && test_board.spaces[5][0] == "."
-      return true
-    else
-      return false
-    end
-
-    if @valid_choices.include?(letter) == false
-      return false
-    end
   end
+
 
   #vertical_checker, horizontal_checker and diagonal_checker look through the board on 3 axises for 4 in a row. if found, will return true, else will return false.
   #they accept no arguments, and will check the @spaces instance variable in its current state.
