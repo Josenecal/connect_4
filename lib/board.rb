@@ -28,16 +28,16 @@ class Board
     while counter >= 0 do
       if @spaces[column][counter]== "."
         @spaces[column][counter] = mark
-        true
+          return true
       end
       counter -= 1
     end
-      false
+      return false
   end
 
 
   def valid_column?(choice)
-  
+
     if @spaces[choice.translator][0] == "."
       true
     else
