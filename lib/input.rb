@@ -6,9 +6,7 @@ class Input
     @letter = letter
   end
 
-  def gets_letter(player_letter)
-    player_letter = gets.chomp
-  end
+  
 
 
   def translator
