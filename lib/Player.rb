@@ -5,11 +5,11 @@ class Player
     @argument = argument
   end
 
-  def gets_column()
-    valid_choices = [a,b,c,d,e,f,g]
+  def gets_column() #Gets a valid player choice and returns as column number
+    valid_choices = ["a","b","c","d","e","f","g"]
     player_letter = gets.chomp
     # while player_letter.downcase != "\a..g\" #there's a way to express a-g with regular expressions
-    while valid_choices.exclude? player_letter
+    while valid_choices.exclude?(player_letter)
       p "invalid column selection!"
       p "please enter a column a - g"
       player_letter = gets.chomp

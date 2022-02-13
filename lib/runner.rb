@@ -10,6 +10,29 @@ require './lib/computer.rb'
 #   play_or_exit = gets.upcase.chomp
 # end
 #Any methods to write
+  def start_game
+    #starts the game by instantiating a Game object
+    board = Board.new
+  end
+
+  def run_game (game)
+    print_board(board)
+    puts "Enter A, B, C, D, E, F or G to select a column"
+    player.gets_column
+    while board.valid_column?(letter) == false
+      puts "Column is full please choose another"
+      player.gets_column
+    end
+    board.place_piece(letter, "X")
+
+
+
+    #runs player turn, then computer turn
+    #Check after each turn whether the game is over
+      #If not, continue to next turn
+      #if so, give appropriate end game message and call main_menu
+  end
+
 
   def main_menu
     selected = false
@@ -25,6 +48,7 @@ require './lib/computer.rb'
         puts "Invalid selection!"
       end
     end
+    start_game
   end
 
   main_menu

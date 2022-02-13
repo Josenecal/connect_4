@@ -9,7 +9,7 @@ class Computer
 
   end
 
-  def computer_choice(board)
+  def gets_column(board)
     zero  = Input.new(0)
     one   = Input.new(1)
     two   = Input.new(2)
