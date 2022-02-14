@@ -2,6 +2,8 @@ require 'pry'
 require './lib/input.rb'
 require './lib/board.rb'
 require './lib/computer.rb'
+require './lib/turn.rb'
+require './lib/player.rb'
 
 # selected = false
 #  while selected == false do
@@ -9,23 +11,46 @@ require './lib/computer.rb'
 #   puts "Enter p to play. Enter q to quit."
 #   play_or_exit = gets.upcase.chomp
 # end
-#Any methods to write
-  def start_game
-    #starts the game by instantiating a Game object
-    board = Board.new
-  end
+
+ class Game
+   attr_accessor :player, :board, :letter, :computer
+
+   def initialize ()
+     @board = Board.new
+     @player = Player.new
+     @computer = Computer.new
+   end
+ end
 
   def run_game (game)
-    print_board(board)
-    puts "Enter A, B, C, D, E, F or G to select a column"
-    player.gets_column
-    while board.valid_column?(letter) == false
-      puts "Column is full please choose another"
-      player.gets_column
+
+    while game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false do
+      winner = true
+      game.board.print_board
+      puts "Enter A, B, C, D, E, F or G to select a column"
+      letter = game.player.gets_column
+      while game.board.valid_column?(letter) == false
+        puts "Column is full please choose another"
+        game.board.print_board
+        letter = game.player.gets_column
+      end
+      game.board.place_piece(letter, "X")
+      game.board.print_board
+      if game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false
+        letter = game.computer.gets_column(game.board)
+        game.board.place_piece(letter, "O")
+        winner = false
+      end
     end
-    board.place_piece(letter, "X")
-
-
+    game.board.print_board
+    if game.board.is_tie?(game.board)
+      puts "It's a tie"
+    elsif winner == true
+      puts "Congratulations you win!!!"
+    else
+      puts "You have been bested by a machine, feel bad."
+    end
+    main_menu
 
     #runs player turn, then computer turn
     #Check after each turn whether the game is over
@@ -44,11 +69,14 @@ require './lib/computer.rb'
         abort("Good bye.")
       elsif play_or_exit == "P"
         selected = true
+        game = Game.new
       else
         puts "Invalid selection!"
       end
     end
-    start_game
+      run_game(game)
+
+
   end
 
   main_menu

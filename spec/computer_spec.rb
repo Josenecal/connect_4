@@ -5,6 +5,6 @@ RSpec.describe 'Class exists' do
     test_board = Board.new
     test_board.spaces = [["x", "x", "o", "x", "o", "x"],["x", "x", "o", "x", "o", "x"],[".", ".", ".", ".", ".", "."],["x", "x", "o", "x", "o", "x"],["x", "x", "o", "x", "o", "x"],["o", "x", "o", "x", "o", "x"], ["x", "x", "o", "x", "o", "x"]]
     computer = Computer.new
-    expect(computer.computer_choice(test_board)).to eq(2)
+    expect(computer.gets_column(test_board)).to eq(2)
   end
 end
