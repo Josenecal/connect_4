@@ -20,7 +20,7 @@ class Computer
     computer_choices = [zero,one,two,three,four,five,six]
     random_choices = computer_choices.shuffle
     random_choices.find do |number|
-      if board.valid_column?(number) == true
+      if board.valid_column?(number.letter) == true
         return number.letter
       end
     end

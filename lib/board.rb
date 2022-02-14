@@ -37,8 +37,8 @@ class Board
 
 
   def valid_column?(choice)
-
-    if @spaces[choice.translator][0] == "."
+    to_be_tested = Input.new(choice)
+    if @spaces[to_be_tested.translator][0] == "."
       true
     else
       false
@@ -187,4 +187,19 @@ class Board
     end
     return false
   end
+
+  def is_winning_turn? (board)
+    (board.vertical_checker || board.horizontal_checker) || board.diagonal_checker
+  end
+
+  def is_tie? (board)
+    board.spaces.each do |column|
+      if column[0] == "."
+        return false
+      end
+    end
+    return true
+  end
+
+
 end
