@@ -25,7 +25,7 @@ require './lib/player.rb'
   def run_game (game)
 
     while game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false do
-      winner = "human"
+      winner = true
       game.board.print_board
       puts "Enter A, B, C, D, E, F or G to select a column"
       letter = game.player.gets_column
@@ -39,12 +39,18 @@ require './lib/player.rb'
       if game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false
         letter = game.computer.gets_column(game.board)
         game.board.place_piece(letter, "O")
-        winner = "computer"
+        winner = false
       end
     end
     game.board.print_board
-
-
+    if game.board.is_tie?(game.board)
+      puts "It's a tie"
+    elsif winner == true
+      puts "Congratulations you win!!!"
+    else
+      puts "You have been bested by a machine, feel bad."
+    end
+    main_menu
 
     #runs player turn, then computer turn
     #Check after each turn whether the game is over
