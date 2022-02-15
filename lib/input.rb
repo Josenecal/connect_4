@@ -6,7 +6,7 @@ class Input
     @letter = letter
   end
 
-  
+
 
 
   def translator
