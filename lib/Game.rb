@@ -6,7 +6,7 @@ require 'pry'
 
 
 class Game
-  attr_accessor :player, :board, :letter, :computer
+  attr_accessor :player, :board, :letter, :computer, :winner
 
   def initialize ()
     @board = Board.new
@@ -29,15 +29,15 @@ class Game
     if game.board.vertical_three_checker[:three_in_a_row] == true
       letter = game.board.vertical_three_checker[:column]
       game.board.place_piece(letter, "O")
-      @winner = false
+      game.winner = false
     elsif game.board.horizontal_three_checker[:three_in_a_row] == true
       letter = game.board.horizontal_three_checker[:column]
       game.board.place_piece(letter, "O")
-      @winner = false
+      game.winner = false
     else
       letter = game.computer.gets_column(game.board)
       game.board.place_piece(letter, "O")
-      @winner = false
+      # game.winner = false
     end
   end
 
@@ -55,7 +55,7 @@ class Game
    game.board.print_board
    if game.board.is_tie?(game.board)
      puts "It's a tie"
-   elsif @winner == true
+   elsif game.winner == true
      puts "Congratulations you win!!!"
    else
      puts "You have been bested by a machine, feel bad."
