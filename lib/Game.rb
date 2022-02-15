@@ -31,8 +31,11 @@ class Game
      game.board.print_board
       if game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false
         if game.board.vertical_three_checker[:three_in_a_row] == true
-          binding.pry
           letter = game.board.vertical_three_checker[:column]
+          game.board.place_piece(letter, "O")
+          winner = false
+        elsif game.board.horizontal_three_checker[:three_in_a_row] == true
+          letter = game.board.horizontal_three_checker[:column]
           game.board.place_piece(letter, "O")
           winner = false
         else

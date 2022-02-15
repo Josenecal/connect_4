@@ -217,4 +217,23 @@ class Board
     return @checker_hash
   end
 
+  def horizontal_three_checker
+    @checker_hash = {:three_in_a_row => false, :column => nil}
+    to_check = column_to_row_translation
+    row_counter=0
+    to_check.each do |row|#iterates through all 6 rows
+      row_counter += 1
+      4.times do |column| #checks for 4 in a row from 4 starting positions to cover entire row
+        checking_array = []
+        checking_array.push((row[column]), (row[column+1]), (row[column+2]), (row[column+3]))
+        # if checking_array.count("O") == 3 && checking_array.include? "." && @spaces[column][checking_array.index(".") - 1 ] != "."
+        if checking_array.count("O") == 3 && checking_array.include?(".") && @spaces[checking_array.index(".")+ column][row_counter] != "."
+          @checker_hash[:three_in_a_row] = true
+          @checker_hash[:column] = checking_array.index(".") + column
+          return @checker_hash
+        end
+      end
+    end
+    return @checker_hash
+  end
 end
