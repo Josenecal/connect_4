@@ -29,10 +29,17 @@ class Game
      end
      game.board.place_piece(letter, "X")
      game.board.print_board
-     if game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false
-       letter = game.computer.gets_column(game.board)
-       game.board.place_piece(letter, "O")
-       winner = false
+      if game.board.is_winning_turn?(game.board) == false && game.board.is_tie?(game.board) == false
+        if game.board.vertical_three_checker[:three_in_a_row] == true
+          binding.pry
+          letter = game.board.vertical_three_checker[:column]
+          game.board.place_piece(letter, "O")
+          winner = false
+        else
+          letter = game.computer.gets_column(game.board)
+          game.board.place_piece(letter, "O")
+          winner = false
+        end
      end
    end
    game.board.print_board

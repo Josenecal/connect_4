@@ -26,14 +26,14 @@ RSpec.describe 'Class exists' do
     expect(test_board.spaces).to eq([[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["o", "x", "o", "x", "o", "x"], ["x", "x", "o", "x", "o", "x"]])
     end
 
-    it 'accepts input A on an empty board' do
+    xit 'accepts input A on an empty board' do
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
       choice = Input.new("A")
       expect(test_board.valid_column?(choice)).to eq true
     end
 
-    it 'accepts input A on an empty board' do
+    xit 'accepts input A on an empty board' do
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
       choice = Input.new("A")
@@ -41,7 +41,7 @@ RSpec.describe 'Class exists' do
     end
 
 
-    it 'refuses input D on an empty board' do
+    xit 'refuses input D on an empty board' do
       test_board = Board.new
       test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],["x", "x", "x", "x", "x", "x"],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
       choice = Input.new("d")
@@ -61,8 +61,21 @@ RSpec.describe 'Class exists' do
   end
 
 
+  xit 'accepts input A on an empty board' do
+    test_board = Board.new
+    test_board.spaces = [[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
+    choice = Input.new("A")
+    expect(test_board.valid_column?(choice)).to eq true
+  end
 
-
+  it 'detects 3 in a row' do
+    test_board = Board.new
+    test_board.spaces = [[".", ".", ".", "X", "X", "X"],[".", ".", ".", ".", ".", "."],[".", ".", ".", "X", "X", "X"],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."],[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
+    test_board.vertical_three_checker
+    expect(test_board.vertical_three_checker).to eq({:three_in_a_row=>true, :column=>0})
+    # expect(test_board.vertical_three_checker).to eq(false)
+    # expect(test_board.vertical_3_checker.checker_hashto eq()
+  end
 
 
   end

@@ -1,7 +1,7 @@
 require 'pry'
 require './lib/input.rb'
 class Board
-  attr_accessor :spaces, :letter
+  attr_accessor :spaces, :letter, :checker_hash
 
   def initialize ()
     #Represents 7 columns, each with 6 rows.
@@ -201,5 +201,20 @@ class Board
     return true
   end
 
+  def vertical_three_checker
+    @checker_hash = {:three_in_a_row => false, :column => nil}
+    column_counter = -1
+    @spaces.each do |column|#iterates through all 7 columns
+      column_counter += 1
+      3.times do |count|
+        if ((column[count] == "." && column[count+1] == "O" && column[count+2] == "O" && column[count+3] == "O"))
+          @checker_hash[:three_in_a_row] = true
+          @checker_hash[:column] = column_counter
+          return @checker_hash
+        end
+      end
+    end
+    return @checker_hash
+  end
 
 end
